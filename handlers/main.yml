@@ -1,0 +1,13 @@
+---
+# handlers file for Nkdk.tdagent
+- name: restart td-agent
+  service:
+    name: td-agent
+    state: restarted
+  when: not ansible_check_mode and not ansible_os_family == "Windows"
+
+- name: start td-agent
+  service:
+    name: td-agent
+    state: restarted
+  when: not ansible_check_mode and not ansible_os_family == "Windows"

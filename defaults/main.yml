@@ -1,0 +1,3 @@
+---
+# defaults file for Fluentd.tdagent
+td_agent_version: ""

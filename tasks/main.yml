@@ -1,0 +1,10 @@
+---
+# tasks file for Nkdk.tdagent
+- include_tasks: pkg-redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- include_tasks: plugin-install-linux.yml
+  when: td_agent_plugin_list is defined and ansible_os_family != "Windows"
+
+- include_tasks: td-agent-configure.yml
+  when: param_tdagent_config is defined

@@ -1,0 +1,30 @@
+{% for config_list in param_tdagent_config %}
+<{{ config_list.directive }}{% if config_list.tag is defined %} {{ config_list.tag }}{% endif %}>
+{% for config_items in config_list.vars %}
+{% if config_items['section'] is defined %}
+  <{{ config_items['section'][0]['name'] }}>
+{% for section_items in config_items['section'] %}
+{% if section_items['name'] is not defined %}
+{% for k, v in section_items.items() %}
+{% if v  == None %}
+    {{ k | regex_replace('^at_','@') }}
+{% else %}
+    {{ k | regex_replace('^at_','@') }} {{ v | regex_replace('^\'', '') | regex_replace('^\'', '') }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+  </{{ config_items['section'][0]['name'] }}>
+{% else %}
+{% for k, v in config_items.items() %}
+{% if v  == None %}
+  {{ k | regex_replace('^at_','@') }}
+{% else %}
+  {{ k | regex_replace('^at_','@') }} {{ v | regex_replace('^\'', '') | regex_replace('^\'', '') }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+</{{ config_list.directive }}>
+
+{% endfor %}

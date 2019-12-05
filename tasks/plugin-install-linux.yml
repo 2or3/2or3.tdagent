@@ -1,0 +1,8 @@
+---
+- name: install td-agent plugin
+  gem:
+    executable: /usr/sbin/td-agent-gem
+    name: "{{ item }}"
+    state: present
+    user_install: no
+  loop: "{{ td_agent_plugin_list }}"

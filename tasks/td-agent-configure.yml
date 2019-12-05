@@ -1,0 +1,6 @@
+- name: Template td-agent config file
+  template:
+    src: ../templates/td-agent.conf.j2
+    dest: /etc/td-agent/td-agent.conf
+    mode: 644
+  notify: restart td-agent
